@@ -1,0 +1,119 @@
+.tour-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: var(--sp-8);
+  align-items: start;
+}
+
+.tour-sidebar {
+  position: sticky;
+  top: calc(var(--nav-height) + 24px);
+}
+
+.booking-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.booking-card__header {
+  background: linear-gradient(135deg, var(--accent) 0%, #c04d00 100%);
+  padding: var(--sp-4);
+  text-align: center;
+}
+
+.booking-card__price {
+  font-family: var(--font-currency);
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+
+.booking-card__price-note {
+  font-size: var(--text-sm);
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 4px;
+}
+
+.booking-card__body {
+  padding: var(--sp-4);
+}
+
+.booking-card__facts {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.booking-fact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.booking-fact i {
+  color: var(--accent);
+  width: 16px;
+  text-align: center;
+}
+
+.booking-fact strong {
+  color: var(--text);
+  margin-left: auto;
+}
+
+.booking-card__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.booking-card__actions .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.booking-card__note {
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  text-align: center;
+  margin-top: var(--sp-2);
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-6);
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--text-base);
+  color: var(--text-muted);
+}
+
+.highlight-item i {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+@media (max-width:1024px) {
+  .tour-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .tour-sidebar {
+    position: static;
+  }
+}

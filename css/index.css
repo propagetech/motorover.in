@@ -1,0 +1,30 @@
+    /* Visual hero overrides for this page */
+    .v-hero {
+      /* Sit above the fold so a sliver of the next section peeks through */
+      height: 85vh;
+      min-height: 520px;
+      max-height: 820px;
+    }
+
+    /* Uniform yellow-on-black CTAs in the hero */
+    .v-hero__actions .btn {
+      background-color: #FFC512;
+      border-color: #FFC512;
+      color: #111;
+      min-width: 240px;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .v-hero__actions .btn:hover,
+    .v-hero__actions .btn:focus-visible {
+      background-color: #FFD53D;
+      border-color: #FFD53D;
+      color: #111;
+      box-shadow: 0 0 24px rgba(255, 197, 18, 0.35);
+    }
+
+    .v-hero__actions .btn i {
+      color: #111;
+    }
+  

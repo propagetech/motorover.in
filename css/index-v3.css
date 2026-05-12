@@ -1,0 +1,355 @@
+    /* ======================================================
+       MotoRover — Carousel Homepage (index-v3)
+       ====================================================== */
+
+    /* Hero and section bar styles are in css/home-common.css */
+
+    /* --- Carousel section ------------------------------- */
+    .c-section {
+      background: var(--bg);
+      padding-bottom: var(--sp-2);
+    }
+
+    /* Outer shell — holds the absolute-positioned nav buttons */
+    .c-carousel {
+      position: relative;
+      padding: var(--sp-5) 84px;
+    }
+
+    /* Nav arrow buttons */
+    .c-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: background 150ms ease, border-color 150ms ease,
+        color 150ms ease, box-shadow 150ms ease;
+    }
+
+    .c-btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: var(--shadow-accent);
+    }
+
+    .c-btn--prev {
+      left: 14px;
+    }
+
+    .c-btn--next {
+      right: 14px;
+    }
+
+    /* The overflow-hidden viewport */
+    .c-viewport {
+      overflow: hidden;
+    }
+
+    /* Flex track — slides sit side by side */
+    .c-track {
+      display: flex;
+      gap: 3px;
+      transition: transform 580ms cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+
+    /* Individual slide card */
+    .c-slide {
+      flex: 0 0 auto;
+      /* width set by JS */
+      height: 480px;
+      position: relative;
+      overflow: hidden;
+      display: block;
+      text-decoration: none;
+      background: var(--surface);
+      border-radius: 2px;
+    }
+
+    .c-slide__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 700ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .c-slide:hover .c-slide__img {
+      transform: scale(1.06);
+    }
+
+    .c-slide__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top,
+          rgba(0, 0, 0, 0.88) 0%,
+          rgba(0, 0, 0, 0.26) 50%,
+          rgba(0, 0, 0, 0.00) 75%);
+      transition: background 400ms ease;
+    }
+
+    .c-slide:hover .c-slide__overlay {
+      background: linear-gradient(to top,
+          rgba(0, 0, 0, 0.94) 0%,
+          rgba(0, 0, 0, 0.40) 55%,
+          rgba(0, 0, 0, 0.10) 80%);
+    }
+
+    /* Frosted-glass price badge */
+    .c-slide__badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: rgba(255, 255, 255, 0.90);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      z-index: 1;
+    }
+
+    /* Slide number indicator */
+    .c-slide__num {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      color: rgba(255, 255, 255, 0.35);
+      z-index: 1;
+    }
+
+    /* Bottom info block */
+    .c-slide__info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 22px 22px 26px;
+      z-index: 1;
+    }
+
+    .c-slide__dest {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+
+    .c-slide__name {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .c-slide__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.50);
+    }
+
+    .c-slide__meta span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .c-slide__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding: 7px 16px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .03em;
+      border-radius: var(--radius-pill);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 220ms ease, transform 220ms ease, background 150ms ease;
+    }
+
+    .c-slide:hover .c-slide__cta {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* --- Dots ------------------------------------------- */
+    .c-footer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-4);
+      padding: var(--sp-4) var(--sp-5) var(--sp-7);
+    }
+
+    .c-dots {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .c-dot {
+      height: 8px;
+      width: 8px;
+      border-radius: 4px;
+      background: var(--border);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: width 260ms ease, background 260ms ease;
+    }
+
+    .c-dot.active {
+      background: var(--accent);
+      width: 28px;
+    }
+
+    .c-counter {
+      font-size: var(--text-sm);
+      color: var(--text-muted);
+      min-width: 48px;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      user-select: none;
+    }
+
+    /* --- Bottom CTA ------------------------------------- */
+    .v-cta {
+      padding: var(--sp-12) var(--sp-4);
+      text-align: center;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+    }
+
+    .v-cta__eyebrow {
+      font-size: var(--text-xs);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: var(--sp-2);
+    }
+
+    .v-cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: var(--sp-5);
+    }
+
+    .v-cta__title em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .v-cta__actions {
+      display: flex;
+      gap: var(--sp-3);
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* --- Responsive ------------------------------------- */
+    @media (max-width: 1023px) {
+      .c-carousel {
+        padding: var(--sp-4) 66px;
+      }
+
+      .c-btn {
+        width: 44px;
+        height: 44px;
+      }
+
+      .c-btn--prev {
+        left: 10px;
+      }
+
+      .c-btn--next {
+        right: 10px;
+      }
+
+      .c-slide {
+        height: 400px;
+      }
+
+      .c-slide__name {
+        font-size: var(--text-lg);
+      }
+    }
+
+    @media (max-width: 639px) {
+      .c-carousel {
+        padding: var(--sp-3) 42px;
+      }
+
+      .c-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.8rem;
+      }
+
+      .c-btn--prev {
+        left: 4px;
+      }
+
+      .c-btn--next {
+        right: 4px;
+      }
+
+      .c-slide {
+        height: 360px;
+      }
+
+      /* CTA always visible on mobile — no hover available */
+      .c-slide__cta {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .c-slide__name {
+        font-size: var(--text-base);
+      }
+
+      .v-bar {
+        padding: var(--sp-3) var(--sp-4);
+      }
+
+      .v-bar__label {
+        font-size: var(--text-xl);
+      }
+
+      .v-bar__count {
+        display: none;
+      }
+    }
+  

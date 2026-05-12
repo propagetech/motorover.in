@@ -1,0 +1,12 @@
+name = "email-worker"
+main = "build/worker/shim.mjs"
+compatibility_date = "2023-10-25"
+
+[build]
+command = "cargo install -q worker-build && worker-build --release"
+
+[vars]
+# These will be overridden by secrets in production
+SENDGRID_API_KEY = "placeholder"
+RECAPTCHA_SECRET_KEY = "placeholder"
+OWNER_EMAIL = "support@motorover.in"

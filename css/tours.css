@@ -1,0 +1,65 @@
+    .tours-filter {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: var(--sp-4);
+      margin-bottom: var(--sp-6);
+    }
+
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: var(--radius-pill);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all var(--t-fast);
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
+    }
+
+    .tours-section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-5);
+    }
+
+    .tours-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .page-hero {
+      padding: calc(var(--nav-height) + var(--sp-10)) 0 var(--sp-10);
+      background: linear-gradient(180deg, rgba(224, 90, 0, 0.08) 0%, transparent 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tours-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-3);
+    }
+
+    @media(max-width:1200px) {
+      .tours-grid-4 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media(max-width:768px) {
+      .tours-grid-4 {
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
+  
