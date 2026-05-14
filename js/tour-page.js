@@ -1,17 +1,114 @@
 /* ============================================================
-   Tour detail pages — itinerary (non-table), tour types, INR toggle,
-   responsive grid hints. Frankfurter API (no key) for FX.
+   Tour detail pages — itinerary (non-table), tour types,
+   booking-card INR estimate from live FX, responsive grid hints.
    ============================================================ */
 (function () {
   'use strict';
+
+  var ITINERARY_MONTH_INDEX = {
+    jan: 0,
+    feb: 1,
+    mar: 2,
+    apr: 3,
+    may: 4,
+    jun: 5,
+    jul: 6,
+    aug: 7,
+    sep: 8,
+    oct: 9,
+    nov: 10,
+    dec: 11
+  };
+  var ITINERARY_MONTH_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var ITINERARY_WEEKDAY_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+  function parseItineraryMonthDayCell(raw) {
+    var s = raw.trim();
+    var m = s.match(/^([A-Za-z]{3})\s+(\d{1,2})$/);
+    if (!m) {
+      return null;
+    }
+    var monthIndex = ITINERARY_MONTH_INDEX[m[1].toLowerCase()];
+    if (monthIndex === undefined) {
+      return null;
+    }
+    var dayNum = parseInt(m[2], 10);
+    if (dayNum < 1 || dayNum > 31) {
+      return null;
+    }
+    return { monthIndex: monthIndex, day: dayNum };
+  }
+
+  function formatItineraryLongDate(d) {
+    return (
+      ITINERARY_WEEKDAY_LONG[d.getDay()] +
+      ', ' +
+      d.getDate() +
+      ' ' +
+      ITINERARY_MONTH_SHORT[d.getMonth()] +
+      ' ' +
+      d.getFullYear()
+    );
+  }
+
+  function escapeHtmlText(s) {
+    if (!s) {
+      return '';
+    }
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /** Formats "Jun 2" style cells to "Tuesday, 2 Jun 2026". Keeps TBA, em dash, etc. Handles year rollover (e.g. Dec → Jan). */
+  function formatItineraryDateLabel(raw, state) {
+    var parsed = parseItineraryMonthDayCell(raw);
+    if (!parsed) {
+      return raw;
+    }
+    var y = state.year;
+    var d = new Date(y, parsed.monthIndex, parsed.day);
+    var guard = 0;
+    while (state.lastMs !== null && d.getTime() <= state.lastMs && guard < 4) {
+      y += 1;
+      d = new Date(y, parsed.monthIndex, parsed.day);
+      guard += 1;
+    }
+    state.year = y;
+    state.lastMs = d.getTime();
+    return formatItineraryLongDate(d);
+  }
 
   function enhanceItineraryTables() {
     document.querySelectorAll('table.itinerary-table').forEach(function (table) {
       if (table.dataset.itineraryEnhanced === '1') {
         return;
       }
+      var thead = table.querySelector('thead');
       var tbody = table.querySelector('tbody');
-      if (!tbody) {
+      if (!thead || !tbody) {
+        return;
+      }
+      var thEls = thead.querySelectorAll('th');
+      if (!thEls.length) {
+        return;
+      }
+      var col = {};
+      for (var hi = 0; hi < thEls.length; hi++) {
+        col[thEls[hi].textContent.trim().toLowerCase()] = hi;
+      }
+      function idx(name) {
+        return col[name] !== undefined ? col[name] : -1;
+      }
+      var iDay = idx('day');
+      var iDate = idx('date');
+      var iRoute = idx('route');
+      var iActivity = idx('activity');
+      var iMeals = idx('meals');
+      var iDist = idx('distance');
+      if (iDay < 0 || iRoute < 0 || iActivity < 0 || iDist < 0) {
         return;
       }
       var rows = tbody.querySelectorAll('tr');
@@ -22,24 +119,61 @@
       wrap.className = 'itinerary-scroll';
       wrap.setAttribute('role', 'region');
       wrap.setAttribute('aria-label', 'Day by day itinerary');
+      var yearAttr = parseInt(table.getAttribute('data-itinerary-year'), 10);
+      var dateState = {
+        year: Number.isFinite(yearAttr) ? yearAttr : 2026,
+        lastMs: null
+      };
       rows.forEach(function (tr) {
         var tds = tr.querySelectorAll('td');
-        if (tds.length < 5) {
+        if (tds.length < thEls.length) {
           return;
+        }
+        function cellAt(ix) {
+          return ix >= 0 && ix < tds.length ? tds[ix] : null;
+        }
+        var dayTd = cellAt(iDay);
+        var dateTd = cellAt(iDate);
+        var routeTd = cellAt(iRoute);
+        var activityTd = cellAt(iActivity);
+        var mealsTd = cellAt(iMeals);
+        var distTd = cellAt(iDist);
+        if (!dayTd || !routeTd || !activityTd || !distTd) {
+          return;
+        }
+        var rawDate = dateTd ? dateTd.textContent.trim() : '';
+        var dateLabel = iDate >= 0 ? formatItineraryDateLabel(rawDate, dateState) : '';
+        var mealsBlock = '';
+        if (mealsTd) {
+          mealsBlock = '<p class="itinerary-day__meals">' + mealsTd.innerHTML.trim() + '</p>';
         }
         var day = document.createElement('article');
         day.className = 'itinerary-day';
         day.setAttribute('role', 'article');
         day.innerHTML =
           '<div class="itinerary-day__head">' +
-          '<span class="itinerary-day__badge-wrap">' + tds[0].innerHTML + '</span>' +
-          '<span class="itinerary-day__date">' + tds[1].textContent.trim() + '</span>' +
+          '<span class="itinerary-day__badge-wrap">' +
+          dayTd.innerHTML +
+          '</span>' +
+          '<span class="itinerary-day__date">' +
+          escapeHtmlText(dateLabel) +
+          '</span>' +
           '</div>' +
-          '<p class="itinerary-day__route">' + tds[2].textContent.trim() + '</p>' +
-          '<div class="itinerary-day__activity">' + tds[3].innerHTML + '</div>' +
-          '<p class="itinerary-day__km">' + tds[4].textContent.trim() + '</p>';
+          '<p class="itinerary-day__route">' +
+          routeTd.textContent.trim() +
+          '</p>' +
+          '<div class="itinerary-day__activity">' +
+          activityTd.innerHTML +
+          '</div>' +
+          mealsBlock +
+          '<p class="itinerary-day__km">' +
+          distTd.textContent.trim() +
+          '</p>';
         wrap.appendChild(day);
       });
+      if (!wrap.children.length) {
+        return;
+      }
       table.setAttribute('hidden', '');
       table.setAttribute('aria-hidden', 'true');
       table.dataset.itineraryEnhanced = '1';
@@ -54,16 +188,16 @@
     }
     var el = document.createElement('div');
     el.className = 'tour-type-legend';
-    el.setAttribute('aria-label', 'Tour formats we offer');
+    el.setAttribute('aria-label', 'Three ways to do this tour');
     el.innerHTML =
-      '<p class="tour-type-legend__title">Types of tours</p>' +
+      '<p class="tour-type-legend__title">Three ways to do this tour</p>' +
       '<ul class="tour-type-legend__list">' +
-      '<li><span class="tour-type-legend__name">Bespoke tours</span> ' +
-      '<span class="tour-type-legend__desc">Private groups, custom dates &amp; routing.</span></li>' +
-      '<li><span class="tour-type-legend__name">Self-drive tours</span> ' +
-      '<span class="tour-type-legend__desc">Guided convoy self-drive road trips in our SUV programmes.</span></li>' +
-      '<li><span class="tour-type-legend__name">Fixed departure guided road trips</span> ' +
-      '<span class="tour-type-legend__desc">Scheduled group departures &mdash; dates as listed in this tour.</span></li>' +
+      '<li><span class="tour-type-legend__name">Guided Group Self-Drive Road Trips / Motorcycle Tour</span> ' +
+      '<span class="tour-type-legend__desc">Fixed dates | Company of like-minded people | Support team | All related services</span></li>' +
+      '<li><span class="tour-type-legend__name">Self Guided Road Trips / Motorcycle Tours</span> ' +
+      '<span class="tour-type-legend__desc">Your dates | Your group | Vehicles | Hotels | Route | Transfers</span></li>' +
+      '<li><span class="tour-type-legend__name">Bespoke Tours</span> ' +
+      '<span class="tour-type-legend__desc">All the goodness of a Guided Tour but your dates, your group.</span></li>' +
       '</ul>';
     facts.parentNode.insertBefore(el, facts.nextSibling);
   }
@@ -104,6 +238,17 @@
       return { amount: parseFloat(eur2[1].replace(/,/g, '')), currency: 'EUR' };
     }
     return null;
+  }
+
+  function formatTourCurrencyLead(parsed) {
+    var num = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(parsed.amount);
+    if (parsed.currency === 'USD') {
+      return 'USD ' + num;
+    }
+    if (parsed.currency === 'EUR') {
+      return 'Euro ' + num;
+    }
+    return '';
   }
 
   function fetchInrRate(baseCurrency) {
@@ -174,67 +319,28 @@
     }
     var foot = document.createElement('p');
     foot.className = 'tour-currency-foot';
-    foot.textContent = 'Live FX estimate. You pay in INR at the rate on the date of transfer.';
-
-    var group = document.createElement('div');
-    group.className = 'tour-currency-toggle';
-    group.setAttribute('role', 'group');
-    group.setAttribute('aria-label', 'Display price in tour currency or INR');
-    var btnTour = document.createElement('button');
-    btnTour.type = 'button';
-    btnTour.className = 'tour-currency-btn is-active';
-    btnTour.setAttribute('aria-pressed', 'true');
-    btnTour.textContent = parsed.currency;
-    var btnInr = document.createElement('button');
-    btnInr.type = 'button';
-    btnInr.className = 'tour-currency-btn';
-    btnInr.setAttribute('aria-pressed', 'false');
-    btnInr.textContent = 'INR (live est.)';
-    group.appendChild(btnTour);
-    group.appendChild(btnInr);
+    foot.textContent =
+      'Payments to be in Indian Rupees as per the Euro (or USD) exchange rate on the date of transfer.';
     var note = header.querySelector('.booking-card__price-note');
     if (note) {
       note.after(foot);
     } else {
       priceEl.after(foot);
     }
-    foot.after(group);
-
-    var inrText = null;
-    btnTour.setAttribute('disabled', '');
-    btnInr.setAttribute('disabled', '');
-
-    function showTour() {
-      priceEl.textContent = priceEl.dataset.priceOriginal || raw;
-      btnTour.classList.add('is-active');
-      btnInr.classList.remove('is-active');
-      btnTour.setAttribute('aria-pressed', 'true');
-      btnInr.setAttribute('aria-pressed', 'false');
-    }
-    function showInr() {
-      if (!inrText) {
-        return;
-      }
-      priceEl.textContent = inrText;
-      btnInr.classList.add('is-active');
-      btnTour.classList.remove('is-active');
-      btnInr.setAttribute('aria-pressed', 'true');
-      btnTour.setAttribute('aria-pressed', 'false');
-    }
 
     fetchInrRate(parsed.currency)
       .then(function (rate) {
         var inr = Math.round(parsed.amount * rate);
-        var fmt = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(inr);
-        inrText = '≈ ₹ ' + fmt;
-        btnTour.removeAttribute('disabled');
-        btnInr.removeAttribute('disabled');
-        btnTour.addEventListener('click', showTour);
-        btnInr.addEventListener('click', showInr);
+        var inrFmt = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(inr);
+        var lead = formatTourCurrencyLead(parsed);
+        if (lead) {
+          priceEl.textContent = lead + ' / Rs. ' + inrFmt + ' approx.';
+        }
       })
       .catch(function () {
-        foot.textContent = 'INR live estimate unavailable. Prices shown in ' + parsed.currency + ' only.';
-        group.setAttribute('hidden', '');
+        foot.textContent =
+          'Payments to be in Indian Rupees as per the Euro (or USD) exchange rate on the date of transfer. ' +
+          'Live INR equivalent estimate is temporarily unavailable.';
       });
   }
 
@@ -243,6 +349,7 @@
     if (main) {
       main.classList.add('tour-page-main');
     }
+    document.body.classList.add('is-tour-page');
     enhanceItineraryTables();
     injectTourTypes();
     markResponsiveGrids();

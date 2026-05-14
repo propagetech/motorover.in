@@ -11,9 +11,8 @@ This guide covers deployment of the MotoRover website including static site, API
 1. **Connect Repository**
    - Push code to GitHub/GitLab
    - Connect repository to Netlify
-   - Set build command: `npm run build`
-   - Set publish directory: `dist`
-   - The static site HTML, CSS, and assets live at the repository root; `vite.config.js` builds from `index.html`
+   - Leave the build command empty (or use a no-op such as `echo "static"`) — the site is plain HTML, CSS, and JS at the repository root
+   - Set publish directory to the repository root: `.`
 
 2. **Environment Variables**
    - Add any required environment variables in Netlify dashboard
@@ -35,18 +34,13 @@ This guide covers deployment of the MotoRover website including static site, API
    ```bash
    vercel --prod
    ```
-3. **Build Output**
-   - Keep build command as `npm run build`
-   - Keep output directory as `dist`
-   - Vite is configured to build from the repository root (`index.html`)
+3. **Publish**
+   - No frontend build step; publish the repository root so `index.html`, `css/`, `js/`, and `imgs/` are served as static files
 
 ### Option 3: GitHub Pages
 
-1. **Build and Deploy**
-   ```bash
-   npm run build
-   # Push dist/ to gh-pages branch
-   ```
+1. **Deploy**
+   - The GitHub Actions workflow (`.github/workflows/deploy.yml`) uploads the repository root to GitHub Pages; no separate build output directory is required
 
 ## API Server Deployment
 

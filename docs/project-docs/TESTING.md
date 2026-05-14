@@ -158,7 +158,7 @@ npm install --save-dev @testing-library/dom @testing-library/jest-dom jest
 
 ```javascript
 // tests/navigation.test.js
-import { initHeader } from '../src/components/Header.js';
+// The live site uses vanilla JS in `js/main.js`. Import extracted helpers here once you split logic for unit tests.
 
 describe('Navigation', () => {
   test('mobile menu toggles correctly', () => {

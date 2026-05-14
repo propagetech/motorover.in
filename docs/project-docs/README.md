@@ -38,7 +38,7 @@ Comprehensive rebuild of MotoRover website with enhanced static site architectur
 ### Frontend
 - HTML5, CSS3 (enhanced design system)
 - Vanilla JavaScript (ES6+)
-- Vite for development and bundling
+- Static pages at the repository root (no bundler)
 
 ### Backend/API
 - Node.js/Express API server
@@ -55,19 +55,16 @@ Comprehensive rebuild of MotoRover website with enhanced static site architectur
 
 ```
 motorover.in/
-├── public/                 # Static assets
-├── src/
-│   ├── components/         # Reusable UI components
-│   ├── pages/              # Page components
-│   ├── utils/              # Utility functions
-│   ├── styles/             # CSS modules
-│   └── scripts/            # JavaScript modules
-├── content/                # Static content (JSON)
+├── *.html                  # Static pages (index.html, tours, etc.)
+├── css/                    # Stylesheets
+├── js/                     # Client scripts (e.g. main.js)
+├── imgs/                   # Images
+├── content/                # Static content (JSON), if present
 ├── api/                    # API server
-│   ├── routes/             # API routes
-│   ├── services/           # Business logic
-│   └── config/             # Configuration
-└── scripts/                # Build & utility scripts
+│   ├── routes/
+│   ├── services/
+│   └── config/
+└── scripts/                # Utility scripts (e.g. generate_site.py)
 ```
 
 ## Getting Started
@@ -75,14 +72,11 @@ motorover.in/
 ### Development
 
 ```bash
-# Install dependencies
+# Install dependencies (needed for the optional API server and nodemon)
 npm install
 
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
+# Preview the static site: open index.html in a browser, or run a static server, e.g.:
+# npx --yes serve -l 3000 .
 ```
 
 ### API Server

@@ -6,6 +6,16 @@
       max-height: 820px;
     }
 
+    @media (max-width: 768px) {
+      .v-hero {
+        /* svh tracks the visible viewport; extra trim vs 85vh so the bar below reads like desktop */
+        height: calc(100vh - 72px);
+        height: calc(100svh - 72px);
+        min-height: 0;
+        max-height: none;
+      }
+    }
+
     /* Uniform yellow-on-black CTAs in the hero */
     .v-hero__actions .btn {
       background-color: #FFC512;

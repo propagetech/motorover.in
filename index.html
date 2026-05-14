@@ -194,8 +194,8 @@
           </div>
         </div>
 
-        <a href="about.html" class="nav__link" role="menuitem">About</a>
         <a href="why-us.html" class="nav__link" role="menuitem">Why Us</a>
+        <a href="about.html" class="nav__link" role="menuitem">About</a>
         <a href="media.html" class="nav__link" role="menuitem">Media</a>
         <a href="faq.html" class="nav__link" role="menuitem">FAQ</a>
         <a href="contact.html" class="nav__link" role="menuitem">Contact</a>
@@ -262,8 +262,8 @@
           <a href="tours.html#car-tours" class="nav__mobile-sublink nav__mobile-sublink--all">View all car tours</a>
         </div>
       </div>
-      <a href="about.html" class="nav__mobile-link">About</a>
       <a href="why-us.html" class="nav__mobile-link">Why Us</a>
+      <a href="about.html" class="nav__mobile-link">About</a>
       <a href="media.html" class="nav__mobile-link">Media</a>
       <a href="faq.html" class="nav__mobile-link">FAQ</a>
       <a href="contact.html" class="nav__mobile-link">Contact</a>
@@ -285,16 +285,16 @@
         <a href="#car-tours" class="btn btn--primary btn--lg"><i class="fa-solid fa-car-side"></i> Car Tours</a>
       </div>
     </div>
-    <div class="v-hero__scroll" aria-hidden="true">
+    <a href="#stats-bar" class="v-hero__scroll">
       <span>Scroll</span>
-      <i class="fa-solid fa-chevron-down"></i>
-    </div>
+      <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+    </a>
   </div>
 
   <!-- ============================================================
        STATS BAR
   ============================================================ -->
-  <div class="stats-bar" role="region" aria-label="Key statistics">
+  <div class="stats-bar" id="stats-bar" role="region" aria-label="Key statistics">
     <div class="container">
       <div class="stats-bar__grid">
         <div class="stat-item reveal">
@@ -369,7 +369,47 @@
           </div>
         </a>
 
-        <a href="motorcycle-balkan.html" class="tour-card tour-card--link reveal reveal-delay-2">
+        <a href="motorcycle-south-africa.html" class="tour-card tour-card--link reveal reveal-delay-2">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-50.webp" alt="South Africa Motorcycle Tour — Cape and Garden Route" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Oct 2025</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">South Africa</p>
+            <h3 class="tour-card__title">Cape &amp; Garden Route</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~2,200 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-motorcycle"></i> BMW GS Series</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">ZAR 77,000 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="motorcycle-new-zealand.html" class="tour-card tour-card--link reveal reveal-delay-3">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-51.webp" alt="New Zealand Motorcycle Tour — South Island" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Feb 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">New Zealand</p>
+            <h3 class="tour-card__title">South Island Ride</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~2,500 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-motorcycle"></i> BMW F750 GS / Triumph Tiger 660</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">NZD 8,164 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="motorcycle-balkan.html" class="tour-card tour-card--link reveal">
           <div class="tour-card__image-wrap">
             <img src="imgs/image-12.webp" alt="Balkan Motorcycle Tour — Coastal and mountain roads" class="tour-card__image" loading="lazy" />
             <span class="tour-card__badge">Apr 2026</span>
@@ -388,11 +428,85 @@
             </div>
           </div>
         </a>
-      </div>
 
-      <div class="section-footer" style="text-align:center; margin-top: var(--sp-8);">
-        <a href="tours.html" class="btn btn--accent-outline">
-          View All Motorcycle Tours <i class="fa-solid fa-arrow-right"></i>
+        <a href="motorcycle-morocco.html" class="tour-card tour-card--link reveal reveal-delay-1">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-52.webp" alt="Morocco Motorcycle Tour — Atlas and Sahara" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">May 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Morocco</p>
+            <h3 class="tour-card__title">Atlas &amp; Sahara Ride</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~1,600 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-motorcycle"></i> BMW GS Series</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">€3,415 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="motorcycle-georgia.html" class="tour-card tour-card--link reveal reveal-delay-2">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-53.webp" alt="Georgia Motorcycle Tour — Caucasus mountains" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Jun 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Georgia</p>
+            <h3 class="tour-card__title">Caucasus Mountain Ride</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 8 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~1,400 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-motorcycle"></i> Honda Africa Twin / Transalp 750</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">€2,307 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="motorcycle-northern-europe.html" class="tour-card tour-card--link reveal reveal-delay-3">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-54.webp" alt="Northern Europe Motorcycle Tour — Baltic States" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Aug 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Northern Europe</p>
+            <h3 class="tour-card__title">Baltic Triangle</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 8 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~1,600 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-motorcycle"></i> Yamaha MT-09 / BMW R1300 GS</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">€3,010 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="motorcycle-ultimate-alps.html" class="tour-card tour-card--link reveal">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-13.webp" alt="Ultimate Alps Motorcycle Tour — Stelvio Pass and Dolomites" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Jul 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Alps — Europe</p>
+            <h3 class="tour-card__title">Ultimate Alps Tour</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~2,000 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-motorcycle"></i> BMW R1250/R1300 GS</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">€4,152 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
       </div>
     </div>
@@ -430,7 +544,67 @@
           </div>
         </a>
 
-        <a href="car-georgia-winter-adventure.html" class="tour-card tour-card--link reveal reveal-delay-1">
+        <a href="car-silk-route-autumn-edition.html" class="tour-card tour-card--link reveal reveal-delay-1">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-55.webp" alt="Silk Route Autumn Drive — Kyrgyzstan autumn colours" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Oct 2025</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Kyrgyzstan</p>
+            <h3 class="tour-card__title">Silk Route — Autumn Edition</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~2,000 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Toyota Sequoia</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">USD 2,690 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="car-south-africa.html" class="tour-card tour-card--link reveal reveal-delay-2">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-50.webp" alt="South Africa Self-Drive — Cape and Garden Route" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Nov 2025</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">South Africa</p>
+            <h3 class="tour-card__title">Cape &amp; Garden Route Drive</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 10 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~2,800 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Land Cruiser / Ford Ranger</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">ZAR 82,000 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="car-silk-route-snow-drive.html" class="tour-card tour-card--link reveal reveal-delay-3">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-56.webp" alt="Silk Route Snow Drive — Kyrgyzstan winter" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Dec 2025</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Kyrgyzstan</p>
+            <h3 class="tour-card__title">Silk Route — Snow Drive</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 8 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~1,500 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Toyota Sequoia 4WD</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">USD 2,490 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="car-georgia-winter-adventure.html" class="tour-card tour-card--link reveal">
           <div class="tour-card__image-wrap">
             <img src="imgs/image-21.webp" alt="Georgia Winter Adventure — snow covered mountain roads" class="tour-card__image" loading="lazy" />
             <span class="tour-card__badge">Feb 2026</span>
@@ -439,18 +613,58 @@
             <p class="tour-card__destination">Georgia</p>
             <h3 class="tour-card__title">Georgia Winter Adventure</h3>
             <div class="tour-card__meta">
-              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
-              <span class="tour-card__meta-item"><i class="fa-solid fa-snowflake"></i> Winter Drive</span>
-              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> 4x4 SUV</span>
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 8 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~1,200 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Toyota 4Runner 4WD</span>
             </div>
             <div class="tour-card__footer">
-              <div class="tour-card__price">On Request <span>per person</span></div>
+              <div class="tour-card__price">USD 2,180 <span>per person</span></div>
               <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
             </div>
           </div>
         </a>
 
-        <a href="car-morocco.html" class="tour-card tour-card--link reveal reveal-delay-2">
+        <a href="car-new-zealand.html" class="tour-card tour-card--link reveal reveal-delay-1">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-51.webp" alt="New Zealand Self-Drive — both islands" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Feb 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">New Zealand</p>
+            <h3 class="tour-card__title">Both Islands Drive</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 13 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~3,200 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Mitsubishi Pajero Sport</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">NZD 9,770 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="car-balkan.html" class="tour-card tour-card--link reveal reveal-delay-2">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-12.webp" alt="Balkan Self-Drive — four countries" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Apr 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Balkan</p>
+            <h3 class="tour-card__title">Balkan Peninsula Drive</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~2,000 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> BMW X3 / Renault Captur</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">€3,785 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="car-morocco.html" class="tour-card tour-card--link reveal reveal-delay-3">
           <div class="tour-card__image-wrap">
             <img src="imgs/image-22.webp" alt="Morocco Car Tour — Sahara desert and Atlas mountains" class="tour-card__image" loading="lazy" />
             <span class="tour-card__badge">May 2026</span>
@@ -459,21 +673,55 @@
             <p class="tour-card__destination">Morocco</p>
             <h3 class="tour-card__title">Morocco Desert Drive</h3>
             <div class="tour-card__meta">
-              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 10 Days</span>
-              <span class="tour-card__meta-item"><i class="fa-solid fa-sun"></i> Sahara &amp; Atlas</span>
-              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Toyota Sequoia</span>
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 11 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~2,400 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Toyota Land Cruiser Prado</span>
             </div>
             <div class="tour-card__footer">
-              <div class="tour-card__price">On Request <span>per person</span></div>
+              <div class="tour-card__price">€3,385 <span>per person</span></div>
               <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
             </div>
           </div>
         </a>
-      </div>
 
-      <div style="text-align:center; margin-top: var(--sp-8);">
-        <a href="tours.html#car-tours" class="btn btn--accent-outline">
-          View All Car Tours <i class="fa-solid fa-arrow-right"></i>
+        <a href="car-georgia.html" class="tour-card tour-card--link reveal">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-21.webp" alt="Georgia Classic Drive — Tbilisi to Batumi" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Jun 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Georgia</p>
+            <h3 class="tour-card__title">Georgia Classic Drive</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 8 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~1,500 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Toyota 4Runner / Jeep Renegade</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">USD 2,379 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+
+        <a href="car-northern-europe.html" class="tour-card tour-card--link reveal reveal-delay-1">
+          <div class="tour-card__image-wrap">
+            <img src="imgs/image-54.webp" alt="Northern Europe Self-Drive — Baltic States" class="tour-card__image" loading="lazy" />
+            <span class="tour-card__badge">Aug 2026</span>
+          </div>
+          <div class="tour-card__content">
+            <p class="tour-card__destination">Northern Europe</p>
+            <h3 class="tour-card__title">Baltic States Drive</h3>
+            <div class="tour-card__meta">
+              <span class="tour-card__meta-item"><i class="fa-regular fa-clock"></i> 9 Days</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-route"></i> ~1,800 km</span>
+              <span class="tour-card__meta-item"><i class="fa-solid fa-car-side"></i> Toyota RAV4 / Audi Q8</span>
+            </div>
+            <div class="tour-card__footer">
+              <div class="tour-card__price">€3,440 <span>per person</span></div>
+              <span class="tour-card__link">Details <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </div>
         </a>
       </div>
     </div>
@@ -482,12 +730,12 @@
   <!-- ============================================================
        DIVIDER — full-width link
   ============================================================ -->
-  <a href="tours.html" class="home-break--link" aria-label="Browse all MotoRover tours">
+  <!-- <a href="tours.html" class="home-break--link" aria-label="Browse all MotoRover tours">
     <img src="imgs/image-13.webp" alt="" loading="lazy" />
     <div class="home-break--link__overlay">
       <p class="home-break--link__quote">"Not all those who wander are lost"</p>
     </div>
-  </a>
+  </a> -->
 
   <!-- ============================================================
        TESTIMONIALS
@@ -726,8 +974,7 @@
   <section class="section section--dark home-faq-preview" aria-labelledby="home-faq-heading">
     <div class="container">
       <div class="section-header section-header--center reveal">
-        <p class="section-eyebrow">Common Questions</p>
-        <h2 class="section-title" id="home-faq-heading">Quick <em>Answers</em></h2>
+        <h2 class="section-title" id="home-faq-heading">Frequently Asked <em>Questions</em></h2>
       </div>
       <div class="faq-list reveal" style="max-width: 720px; margin: 0 auto;">
         <div class="faq-item">
@@ -853,8 +1100,8 @@
           <div style="margin-top: var(--sp-3);">
             <h3 class="footer__col-title">Quick Links</h3>
             <ul class="footer__links">
-              <li><a href="about.html" class="footer__link">About Us</a></li>
               <li><a href="why-us.html" class="footer__link">Why MotoRover</a></li>
+              <li><a href="about.html" class="footer__link">About Us</a></li>
               <li><a href="media.html" class="footer__link">Media &amp; Gallery</a></li>
               <li><a href="faq.html" class="footer__link">FAQ</a></li>
               <li><a href="contact.html" class="footer__link">Contact</a></li>

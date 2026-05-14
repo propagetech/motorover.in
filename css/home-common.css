@@ -9,6 +9,15 @@
   overflow: hidden;
 }
 
+/* Mobile: trim hero so a sliver of the next section shows (100vh/vh alone often fills the glass on iOS). */
+@media (max-width: 768px) {
+  .v-hero {
+    height: calc(100vh - var(--nav-height));
+    height: calc(100svh - var(--nav-height));
+    min-height: 0;
+  }
+}
+
 .v-hero__bg {
   position: absolute;
   inset: 0;
@@ -83,15 +92,29 @@
   position: absolute;
   bottom: 28px;
   left: 50%;
+  z-index: 2;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 5px;
-  color: rgba(255, 255, 255, 0.40);
+  color: var(--accent);
   font-size: 10px;
+  font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65), 0 0 12px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.v-hero__scroll:hover {
+  color: var(--accent-light);
+}
+
+.v-hero__scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .v-hero__scroll i {

@@ -1,8 +1,21 @@
 .tour-layout {
   display: grid;
-  grid-template-columns: 1fr 360px;
+  grid-template-columns: minmax(0, 1fr) 360px;
   gap: var(--sp-8);
   align-items: start;
+}
+
+/* Allow the main column to shrink so wide carousel tracks scroll inside the viewport, not expand the page */
+.tour-main {
+  min-width: 0;
+}
+
+/* Desktop two-column layout: let the gallery use the grid gutter to the right (does not overlap the sidebar) */
+@media (min-width: 1025px) {
+  .tour-layout > .tour-main > section:has(.tour-gallery) .tour-gallery {
+    width: calc(100% + var(--sp-8));
+    max-width: calc(100% + var(--sp-8));
+  }
 }
 
 .tour-sidebar {
@@ -28,7 +41,7 @@
   font-size: var(--text-4xl);
   font-weight: 800;
   color: var(--white);
-  line-height: 1;
+  line-height: 1.2;
 }
 
 .booking-card__price-note {
@@ -80,13 +93,6 @@
   justify-content: center;
 }
 
-.booking-card__note {
-  font-size: var(--text-xs);
-  color: var(--text-faint);
-  text-align: center;
-  margin-top: var(--sp-2);
-}
-
 .highlights-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -110,10 +116,86 @@
 
 @media (max-width:1024px) {
   .tour-layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .tour-sidebar {
     position: static;
   }
+}
+
+/* Route map, embedded tour video, vehicle options (tour pages) */
+.tour-route-map {
+  margin: 0;
+  padding: 0;
+}
+
+.tour-route-map__link {
+  display: block;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.tour-route-map__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+.tour-route-map__cap {
+  margin-top: var(--sp-2);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.tour-video-embed {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #000;
+}
+
+.tour-video-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.tour-vehicle-section__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.tour-vehicle-section__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--text-base);
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.tour-vehicle-section__item i {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 4px;
+  font-size: 0.85em;
+}
+
+.tour-vehicle-section__item span {
+  color: var(--text);
 }

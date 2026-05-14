@@ -48,36 +48,10 @@ All features from the plan have been successfully implemented. The website now i
 
 ```
 motorover.in/
-├── src/
-│   ├── components/         # All UI components
-│   │   ├── Header.js
-│   │   ├── Newsletter.js
-│   │   ├── BookingFlow.js
-│   │   ├── InquiryForm.js
-│   │   ├── CurrencyConverter.js
-│   │   ├── InteractiveMap.js
-│   │   ├── TripComparison.js
-│   │   ├── TourPlanner.js
-│   │   ├── GroupTourPlanner.js
-│   │   ├── MotorcycleSelector.js
-│   │   ├── AITravelAssistant.js
-│   │   └── TourCard.js
-│   ├── pages/              # Page components
-│   │   ├── Tours.js
-│   │   └── Blog.js
-│   ├── utils/              # Utility functions
-│   │   ├── api.js
-│   │   ├── currency.js
-│   │   ├── validation.js
-│   │   ├── seo.js
-│   │   ├── analytics.js
-│   │   └── navigation.js
-│   ├── styles/             # CSS modules
-│   │   ├── base.css
-│   │   ├── components.css
-│   │   └── utilities.css
-│   └── scripts/
-│       └── main.js         # Enhanced main.js
+├── index.html              # Home and primary static pages (*.html at repo root)
+├── css/                    # Site stylesheets
+├── js/                     # Global scripts (e.g. main.js)
+├── imgs/                   # Images and media
 ├── api/                    # API server
 │   ├── routes/
 │   │   ├── inquiries.js
@@ -92,10 +66,11 @@ motorover.in/
 │   │   └── database.js
 │   └── server.js
 ├── package.json
-├── vite.config.js
-├── DEPLOYMENT.md
-├── TESTING.md
-└── README.md
+├── docs/project-docs/
+│   ├── DEPLOYMENT.md
+│   ├── TESTING.md
+│   └── README.md
+└── README.md (repo root)
 ```
 
 ## Key Components
